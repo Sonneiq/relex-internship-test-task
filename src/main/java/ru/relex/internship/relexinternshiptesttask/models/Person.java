@@ -1,12 +1,14 @@
 package ru.relex.internship.relexinternshiptesttask.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user")
+@Table(name = "Person")
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class Person {
     @Id

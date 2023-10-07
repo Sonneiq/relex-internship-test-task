@@ -14,9 +14,15 @@ public class PersonController {
 
     private final PersonServiceImpl personService;
 
-    @PostMapping ("/create")
-    public ResponseEntity<Person> create(@RequestBody Person person) {
-        Person createdPerson = personService.createPerson(person);
-        return new ResponseEntity(createdPerson, HttpStatus.OK);
+    @PostMapping ("/registration")
+    public ResponseEntity<Person> register(@RequestBody Person person) {
+        Person result = personService.registerPerson(person);
+        return new ResponseEntity(result, HttpStatus.OK);
+    }
+
+    //Для тестирования авторизованных Get запросов
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
     }
 }
