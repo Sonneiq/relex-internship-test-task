@@ -8,6 +8,7 @@ import ru.relex.internship.relexinternshiptesttask.models.Person;
 import ru.relex.internship.relexinternshiptesttask.repositories.PersonRepository;
 import ru.relex.internship.relexinternshiptesttask.services.interfaces.PersonService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -64,5 +65,16 @@ public class PersonServiceImpl implements PersonService {
                     "User: " + authenticatedPerson.getNickname() + " not found");
         }
         personRepository.delete(personToDelete.get());
+    }
+
+    @Override
+    public boolean isPersonExists(String nickname) {
+        Optional<Person> person = personRepository.findByNickname(nickname);
+        return person.isPresent();
+    }
+
+    @Override
+    public List<Person> getAll() {
+        return personRepository.findAll();
     }
 }

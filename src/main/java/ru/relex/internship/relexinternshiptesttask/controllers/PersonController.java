@@ -10,6 +10,8 @@ import ru.relex.internship.relexinternshiptesttask.models.Person;
 import ru.relex.internship.relexinternshiptesttask.security.PersonDetails;
 import ru.relex.internship.relexinternshiptesttask.services.PersonServiceImpl;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/person")
 @AllArgsConstructor
@@ -59,9 +61,10 @@ public class PersonController {
         }
     }
 
-    //Для тестирования авторизованных Get запросов
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
+    //Для тестирования авторизованных get запросов и получения списка пользователей из БД
+    @GetMapping("/all")
+    public ResponseEntity<List<Person>> getAll() {
+        List<Person> personList = personService.getAll();
+        return new ResponseEntity<>(personList, HttpStatus.OK);
     }
 }

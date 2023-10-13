@@ -17,18 +17,18 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests((auth) -> auth.requestMatchers(HttpMethod.POST,"/person/registration")
-                        .permitAll().anyRequest().authenticated()
+                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers(HttpMethod.POST,"/person/registration").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .cors(Customizer.withDefaults())
-                .csrf((csrf) -> csrf.disable()
-                )
+                .csrf((csrf) -> csrf.disable())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
     @Bean
-    public PasswordEncoder encoder() {
+    public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
