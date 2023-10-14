@@ -60,11 +60,4 @@ public class PersonController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
-
-    //Для тестирования авторизованных get запросов и получения списка пользователей из БД
-    @GetMapping("/all")
-    public ResponseEntity<List<Person>> getAll() {
-        List<Person> personList = personService.getAll();
-        return new ResponseEntity<>(personList, HttpStatus.OK);
-    }
 }
