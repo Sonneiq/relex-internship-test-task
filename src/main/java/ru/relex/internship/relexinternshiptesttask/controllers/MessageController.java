@@ -1,5 +1,8 @@
 package ru.relex.internship.relexinternshiptesttask.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -16,11 +19,14 @@ import java.util.List;
 @RequestMapping("/message")
 @AllArgsConstructor
 @Log4j2
+@Tag(name = "MessageController", description = "Контроллер для отправки и просмотра сообщений")
+@SecurityRequirement(name = "basicAuth")
 public class MessageController {
 
     private final MessageServiceImpl messageService;
 
     @GetMapping("/get/{recipient}")
+    @Operation(description = "Получение диалога авторизованного и выбранного пользователей")
     public ResponseEntity<List<Message>> getMessages(@AuthenticationPrincipal PersonDetails authenticatedPerson,
                                                      @PathVariable String recipient) {
         try {
@@ -33,6 +39,7 @@ public class MessageController {
     }
 
     @PostMapping("/send/{recipient}")
+    @Operation(description = "Отправка сообщения пользователю")
     public ResponseEntity<Message> sendMessage(@AuthenticationPrincipal PersonDetails authenticatedPerson,
                                                @PathVariable String recipient, @RequestBody String text) {
         try {

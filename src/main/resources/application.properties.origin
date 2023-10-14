@@ -1,0 +1,15 @@
+#Database
+spring.datasource.url=
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.username=
+spring.datasource.password=
+
+#Hibernate
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.show_sql=true
+spring.jpa.open-in-view=true
+
+#Swagger
+springdoc.packages-to-scan=ru.relex.internship.relexinternshiptesttask.controllers
+springdoc.paths-to-match=/person/**, /message/**
+springdoc.show-login-endpoint=true
