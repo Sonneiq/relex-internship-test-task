@@ -9,6 +9,5 @@ public interface PersonService {
     Person update(Person authenticatedPerson, Person updatingPerson);
     Person updatePassword(Person authenticatedPerson, String newPassword);
     void delete(Person authenticatedPerson);
-    boolean isPersonExists(String nickname);
     List<Person> getAll();
 }

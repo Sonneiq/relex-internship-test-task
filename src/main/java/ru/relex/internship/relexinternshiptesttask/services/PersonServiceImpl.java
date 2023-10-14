@@ -34,6 +34,10 @@ public class PersonServiceImpl implements PersonService {
             throw new RuntimeException(
                     "User: " + authenticatedPerson.getNickname() + " not found");
         }
+        if(isPersonExists(updatedPerson.getNickname())) {
+            throw new RuntimeException(
+                    "User with nickname: " + updatedPerson.getNickname() + " already exists");
+        }
 
         Person personToUpdate = personToUpdateOptional.get();
 
@@ -68,13 +72,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public boolean isPersonExists(String nickname) {
-        Optional<Person> person = personRepository.findByNickname(nickname);
-        return person.isPresent();
-    }
-
-    @Override
     public List<Person> getAll() {
         return personRepository.findAll();
+    }
+
+    private boolean isPersonExists(String nickname) {
+        Optional<Person> personOptional = personRepository.findByNickname(nickname);
+        return personOptional.isPresent();
     }
 }
