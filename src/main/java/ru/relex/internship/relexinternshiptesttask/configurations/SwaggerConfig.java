@@ -18,7 +18,7 @@ public class SwaggerConfig {
     public OpenAPI relexInternshipTestTask() {
         return new OpenAPI()
                 .info(new Info().title("Chat API")
-                        .description("Simple RESTfull Chat test task Application for Relex autumn internship 2023")
+                        .description("Simple RESTful Chat test task Application for Relex autumn internship 2023")
                         .version("v0.0.1"));
     }
 }
